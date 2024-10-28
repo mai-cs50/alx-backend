@@ -8,7 +8,7 @@ import math
 def index_rang(page: int, page_size: int) -> Tuple[int, int]
 """Retrieves the index range from a given page and page size"""
 
-return ((page - 1) * page_size, ((page - 1) * page_size) + page_size)i
+return ((page - 1) * page_size, ((page - 1) * page_size) + page_size)
 
 class Server:
     """Server class to paginate a database of popular baby names"""
@@ -30,6 +30,8 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Retrieves a page of data"""
         assert type(page) == int and type(page_size)
+        assert page > 0 and page_size > 0
+        start, end = index_range(page, page_size)
         data = self.dataset()
         if start > len(data):
             return []
@@ -38,7 +40,7 @@ class Server:
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """Retrieves information about a page"""
         data = self.get_page(page, page_size)
-        start, end = index_range(self.__dataset)
+        start, end = index_range(page, page_size)
         total_pages = math.ceil(len(self.__dataset) / page_size)
         return {
                 'page_size': len(data),
