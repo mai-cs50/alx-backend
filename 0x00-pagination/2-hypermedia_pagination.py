@@ -5,10 +5,9 @@ import csv
 import math
 
 
-def index_rang(page: int, page_size: int) -> Tuple[int, int]
-"""Retrieves the index range from a given page and page size"""
-
-return ((page - 1) * page_size, ((page - 1) * page_size) + page_size)
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """Retrieves the index range from a given page and page size"""
+    return ((page - 1) * page_size, ((page - 1) * page_size) + page_size)
 
 class Server:
     """Server class to paginate a database of popular baby names"""
@@ -21,7 +20,7 @@ class Server:
         """Cached dataset"""
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
-                reader = csv.reader(f).
+                reader = csv.reader(f)
                 dataset = [row for row in reader]
             self.__dataset = dataset[1:]
 
@@ -46,7 +45,7 @@ class Server:
                 'page_size': len(data),
                 'page': page,
                 'data':data,
-                'next_page': page + 1 if end < len(self.__dataser) else None,
+                'next_page': page + 1 if end < len(self.__dataset) else None,
                 'prev_page': page - 1 if start > 0 else None,
                 'total_pages': total_pages
         }
