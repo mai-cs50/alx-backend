@@ -5,10 +5,9 @@ import math
 from typing import List, Tuple
 
 
-def index_rang(page: int, page_size: int) -> Tuple[int, int]
-"""Retrieves the index range from a given page and page size"""
-
-return ((page - 1) * page_size, ((page - 1) * page_size) + page_size)
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """Retrieves the index range from a given page and page size"""
+    return ((page - 1) * page_size, ((page - 1) * page_size) + page_size)
 
 class Server:
     """Server class to paninate a database of popular baby names"""
@@ -21,7 +20,7 @@ class Server:
         """Cached dataset"""
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
-                reader = csv.0reader(f)
+                reader = csv.reader(f)
                 dataset = [row for row in reader]
             self.__dataset = dataset[1:]
 
