@@ -5,7 +5,7 @@
 from base_caching import BaseCaching
 
 
-class BasicCache(BASECaching):
+class BasicCache(BaseCaching):
     """A cass 'BasicCach' that inherits from 'BaseCaching'
        and is a caching system"""
 
@@ -13,9 +13,9 @@ class BasicCache(BASECaching):
            """assign to the dictionary 'self.cach_data' the
               'item' value for the keu 'key'"""
               if key is not None and item is not None:
-                  self.cach_data[key] = item
+                  self.cache_data[key] = item
 
         def get(self, key):
             """return the value in 'self.cach_data' linked to 'key'"""
 
-            return self.cach_data.get(key, None)
+            return self.cache_data.get(key, None)
